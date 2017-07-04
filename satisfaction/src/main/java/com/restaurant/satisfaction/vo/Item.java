@@ -1,7 +1,5 @@
 package com.restaurant.satisfaction.vo;
 
-import java.util.Comparator;
-
 /**
  * Created by Thofiq.Khan on 7/4/2017.
  */

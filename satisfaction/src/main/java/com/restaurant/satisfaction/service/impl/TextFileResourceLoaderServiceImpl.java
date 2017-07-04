@@ -1,6 +1,7 @@
 package com.restaurant.satisfaction.service.impl;
 
 import com.restaurant.satisfaction.service.api.TextFileResourceLoaderService;
+import com.restaurant.satisfaction.service.util.KnapsackUtil;
 import com.restaurant.satisfaction.vo.Item;
 import com.restaurant.satisfaction.vo.TimeAndCount;
 import org.slf4j.Logger;
@@ -27,12 +28,17 @@ public class TextFileResourceLoaderServiceImpl implements TextFileResourceLoader
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TextFileResourceLoaderServiceImpl.class);
 
+    @Autowired
+    private KnapsackUtil knapsackUtil;
+
     private ResourceLoader resourceLoader;
 
-    //To store in proper sequence to remove first entry which is not item
     private List<Item> items = new LinkedList<>();
 
-    public static String BLANK_SPACE = "\\s";
+    private List<Integer> satisfactionInputDetails = new ArrayList();
+    private List<Integer> timeInputDetails = new ArrayList<>();
+
+    public static final String BLANK_SPACE = "\\s";
 
     private TimeAndCount timeAndCount = new TimeAndCount();
 
@@ -44,7 +50,7 @@ public class TextFileResourceLoaderServiceImpl implements TextFileResourceLoader
     }
 
     @PostConstruct
-    public void init() throws IOException {
+    public void init(){
         Resource resource = resourceLoader.getResource("classpath:data.txt");
         String line;
         try{
@@ -54,19 +60,29 @@ public class TextFileResourceLoaderServiceImpl implements TextFileResourceLoader
             while ((line = br.readLine()) != null) {
                 String[] split = line.split(BLANK_SPACE);
 
-                //First line in text file
-                if(!firstLineRead) {
-                    timeAndCount.setTimeInMin(Integer.parseInt(split[0]));
-                    timeAndCount.setCount(Integer.parseInt(split[1]));
-                    firstLineRead = true;
-                    continue;
-                }
+                if(split.length == 2) {
 
-                //Construct item object and store in list
-                Item item = new Item();
-                item.setAmount_of_satisfaction(Integer.parseInt(split[0]));
-                item.setTime_taken_in_min(Integer.parseInt(split[1]));
-                items.add(item);
+                    int splitFirstToken = Integer.parseInt(split[0]);
+                    int splitSecondToken = Integer.parseInt(split[1]);
+
+                    //First line in text file
+                    if (!firstLineRead) {
+                        timeAndCount.setTimeInMin(splitFirstToken);
+                        timeAndCount.setCount(splitSecondToken);
+                        firstLineRead = true;
+                        continue;
+                    }
+
+                    //Construct item object and store in list
+                    Item item = new Item();
+                    item.setAmount_of_satisfaction(splitFirstToken);
+                    this.satisfactionInputDetails.add(splitFirstToken);
+
+                    item.setTime_taken_in_min(splitSecondToken);
+                    this.timeInputDetails.add(splitSecondToken);
+
+                    items.add(item);
+                }
             }
             br.close();
 
@@ -85,4 +101,15 @@ public class TextFileResourceLoaderServiceImpl implements TextFileResourceLoader
     public TimeAndCount getTimeAndCountFromTextFile(){
         return this.timeAndCount;
     }
+
+    /**
+     * Method uses knapsack algo to get the max satisfaction
+     * @return
+     */
+    public int getMaxSatisfactionUsingKnapsack(){
+        Integer[] satisfactionInputDetailsInArray = this.satisfactionInputDetails.toArray(new Integer[satisfactionInputDetails.size()]);
+        Integer[] timeInputDetailsInArray = this.timeInputDetails.toArray(new Integer[this.timeInputDetails.size()]);
+        return KnapsackUtil.performKnapsockAlgo(satisfactionInputDetailsInArray, timeInputDetailsInArray, timeAndCount.getTimeInMin());
+    }
+
 }

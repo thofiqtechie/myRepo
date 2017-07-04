@@ -3,6 +3,7 @@ package com.restaurant.satisfaction;
 import com.restaurant.satisfaction.service.api.ItemComparator;
 import com.restaurant.satisfaction.service.api.TextFileResourceLoaderService;
 import com.restaurant.satisfaction.vo.Item;
+import com.restaurant.satisfaction.vo.SatisfactionKnapSockResult;
 import com.restaurant.satisfaction.vo.SatisfactionResult;
 import com.restaurant.satisfaction.vo.TimeAndCount;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,6 +25,11 @@ public class Restaurant {
     @Qualifier(value = "textFileResourceLoaderService")
     private TextFileResourceLoaderService textFileResourceLoaderService;
 
+    /**
+     * Max satisfaction by time slicing
+     * Sort the items by time in ascending order and calculate the max satisfaction
+     * @return
+     */
     @RequestMapping(path = "/maxSatisfaction")
     public SatisfactionResult findMaxRestuarantSatisfaction(){
 
@@ -51,5 +56,16 @@ public class Restaurant {
         satisfactionResult.setSatisfaction(maxSatisfaction);
         satisfactionResult.setItemAte(itemAte);
         return satisfactionResult;
+    }
+
+    /**
+     * Method which returns max satisfaction by knapsock algo
+     * @return
+     */
+    @RequestMapping("/maxSatisfaction/knapsock")
+    public SatisfactionKnapSockResult getMaxSatisfactionByKnapsock(){
+        SatisfactionKnapSockResult satisfactionKnapSockResult = new SatisfactionKnapSockResult();
+        satisfactionKnapSockResult.setMaxSatisfaction(this.textFileResourceLoaderService.getMaxSatisfactionUsingKnapsack());
+        return satisfactionKnapSockResult;
     }
 }
