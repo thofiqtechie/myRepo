@@ -10,8 +10,8 @@ public class FindTheWinner {
     /**
      * Inputs
      */
-    public static int[] andrea = {1,2,3,4,6};
-    public static int[] maria = {2,1,3,4,2};
+    public static int[] andrea = {1,2,3};
+    public static int[] maria = {2,1,3};
 
     /**
      * Main
@@ -19,6 +19,7 @@ public class FindTheWinner {
      */
     public static void main(String[] args){
         System.out.println(winner(andrea, maria, EVEN));
+        System.out.println(winner(andrea, maria, ODD));
     }
 
     /**
