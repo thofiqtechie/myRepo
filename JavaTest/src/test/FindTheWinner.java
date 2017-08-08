@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Scanner;
+
 /**
  * Created by Thofiq.Khan on 8/1/2017
  */
@@ -8,18 +10,32 @@ public class FindTheWinner {
     public static String MARIA = "Maria", ANDREA = "Andrea",ODD = "Odd", EVEN = "Even", EMPTY_STRING = "", TIE="Tie";
 
     /**
-     * Inputs
-     */
-    public static int[] andrea = {1,2,3};
-    public static int[] maria = {2,1,3};
-
-    /**
      * Main
      * @param args
      */
     public static void main(String[] args){
-        System.out.println(winner(andrea, maria, EVEN));
-        System.out.println(winner(andrea, maria, ODD));
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the number for andrea");
+        int n = in.nextInt();
+        System.out.println("Enter the andrea array value");
+        int[] andra_ar = new int[n];
+        for(int ar_i = 0; ar_i < n; ar_i++){
+            andra_ar[ar_i] = in.nextInt();
+        }
+
+        System.out.println("Enter the number for andrea");
+        int maria = in.nextInt();
+        System.out.println("Enter the andrea array value");
+        int[] maria_ar = new int[maria];
+        for(int ar_i = 0; ar_i < n; ar_i++){
+            maria_ar[ar_i] = in.nextInt();
+        }
+
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Enter the game type EVEN/ODD");
+        String input = keyboard.nextLine();
+        System.out.println(winner(andra_ar, maria_ar, input));
     }
 
     /**

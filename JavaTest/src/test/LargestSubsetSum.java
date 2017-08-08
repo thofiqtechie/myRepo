@@ -9,9 +9,13 @@ public class LargestSubsetSum {
 
     public static void main(String[] args) {
 
-        int inputArray [] = {2,4};
-
-        long[] resultArray = maxSubsetSum(inputArray);
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] ar = new int[n];
+        for(int ar_i = 0; ar_i < n; ar_i++){
+            ar[ar_i] = in.nextInt();
+        }
+        long[] resultArray = maxSubsetSum(ar);
 
         for(int l =0; l<resultArray.length ; l++){
             System.out.println(resultArray[l]);

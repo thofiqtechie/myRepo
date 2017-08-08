@@ -1,13 +1,21 @@
 package test;
 
+import java.util.Scanner;
+
 /**
  * Created by Thofiq.Khan on 8/1/2017
  */
 public class InTheFuture {
 
     public static void main(String[] args){
-        System.out.println(minNum(3,5,1));
-        System.out.println(minNum(4,5,1));
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter asha_No_Prob_PerDay");
+        int asha_No_Prob_PerDay = in.nextInt();
+        System.out.println("Enter kelly_No_Prob_PerDay");
+        int kelly_No_Prob_PerDay = in.nextInt();
+        System.out.println("Enter no_Of_Prob_Asha_Ahead_Of_Kelly");
+        int no_Of_Prob_Asha_Ahead_Of_Kelly = in.nextInt();
+        System.out.println(minNum(asha_No_Prob_PerDay, kelly_No_Prob_PerDay, no_Of_Prob_Asha_Ahead_Of_Kelly));
     }
 
     /**

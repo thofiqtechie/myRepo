@@ -2,6 +2,7 @@ package test;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Thofiq.Khan on 8/1/2017
@@ -11,6 +12,31 @@ public class PsychormeticTesting {
     public static int[] scores = {4,8,7}, lowerLimits = {2,4}, upperLimits = {8,4};
 
     public static void main(String[] args){
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter size of scores");
+        int scoreSize = in.nextInt();
+        System.out.println("Enter score elements");
+        int[] scores = new int[scoreSize];
+        for(int ar_i = 0; ar_i < scoreSize; ar_i++){
+            scores[ar_i] = in.nextInt();
+        }
+
+        System.out.println("Enter size of lowerLimits");
+        int lowerLimitSize = in.nextInt();
+        System.out.println("Enter lowerLimits elements");
+        int[] lowerLimits = new int[lowerLimitSize];
+        for(int ar_i = 0; ar_i < lowerLimitSize; ar_i++){
+            lowerLimits[ar_i] = in.nextInt();
+        }
+
+        System.out.println("Enter size of upperLimits");
+        int upperLimitsSize = in.nextInt();
+        System.out.println("Enter upperLimits elements");
+        int[] upperLimits = new int[lowerLimitSize];
+        for(int ar_i = 0; ar_i < upperLimitsSize; ar_i++){
+            upperLimits[ar_i] = in.nextInt();
+        }
 
         for(int value : jobOffers(scores, lowerLimits, upperLimits)){
             System.out.println(value);

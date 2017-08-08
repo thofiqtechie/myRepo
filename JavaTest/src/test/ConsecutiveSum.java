@@ -1,13 +1,16 @@
 package test;
 
+import java.util.Scanner;
+
 /**
  * Created by Thofiq.Khan on 8/1/2017
  */
 public class ConsecutiveSum {
 
     public static void main(String[] args){
-        System.out.println(ConsecutiveSum.consecutive(15));
-        System.out.println(ConsecutiveSum.consecutive(10));
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter number");
+        System.out.println(ConsecutiveSum.consecutive(in.nextInt()));
     }
 
     /**

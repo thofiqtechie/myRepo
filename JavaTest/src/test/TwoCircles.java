@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Scanner;
+
 /**
  * Created by thofiq.khan on 8/4/2017
  */
@@ -7,12 +9,17 @@ public class TwoCircles {
 
     public static void main(String[] args) {
 
-        //Space seperated values
-        String[] inputArray = {"12 0 21 14 0 23", "0 45 8 0 94 9", "35 0 13 10 0 38",
-                "0 26 8 0 9 25", "0 5 9 0 9 7","0 15 11 0 20 16", "26 0 10 39 0 23", "37 0 5 30 0 11", "41 0 0 28 0 13"};
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the number of test cases");
+        int size = in.nextInt();
 
-        String[] circles = circles(inputArray);
-
+        Scanner keyboard = new Scanner(System.in);
+        String[] ar = new String[size];
+        for(int ar_i = 0; ar_i < size; ar_i++){
+            ar[ar_i] = keyboard.nextLine();
+        }
+        
+        String[] circles = circles(ar);
         for(String circleDef : circles){
             System.out.println(circleDef);
         }
@@ -32,7 +39,7 @@ public class TwoCircles {
 
 
         for(int i =0; i<inputArray.length; i++){
-            String[] splitValue = inputArray[i].split(SPACE);
+            String[] splitValue = inputArray[i].trim().split(SPACE);
 
             //Initial values defaulted to zero
             int X1 = 0, Y1 = 0, radius1 = 0, X2 = 0, Y2 = 0, radius2 = 0;
