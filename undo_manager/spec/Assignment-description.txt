@@ -1,0 +1,18 @@
+The UndoManager is a small, self-contained example sub-system, packaged
+as an Eclipse workspace (you can use another IDE if you like, just grab
+the sources from the workspace). It consists of a couple of interfaces
+that all play together to fulfill the task of tracking, undoing and
+redoing changes to some text document. You can think of it as a
+sub-system of a text editor. Note that in order to keep memory usage
+limited, the UndoManager should keep only a specified number of
+operations to undo (which, obviously have to be the latest changes to
+the document).
+
+The task is to understand the interfaces and what role they play in the
+UndoManager context and then, based on this understanding, write
+implementations of ONLY the UndoManager and UndoManagerFactory interfaces.
+What methods do you know to ensure that the code actually does what it
+is supposed to do? Apply them!
+
+
+Please send the implementation of the classes - including any tests / results - back by email.
