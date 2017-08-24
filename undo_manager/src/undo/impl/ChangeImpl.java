@@ -6,6 +6,7 @@ import undo.dto.ChangeDto;
 import undo.util.ChangeTypeEnum;
 
 /**
+ * Its dummy implementation for testing
  * Created by Thofiq.Khan on 8/22/2017.
  */
 public class ChangeImpl implements Change{

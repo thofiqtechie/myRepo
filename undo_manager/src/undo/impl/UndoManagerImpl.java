@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Thofiq.Khan on 8/22/2017.
  * Proposal: When we use this code in application we need to define the transaction
- * 			 mechanism to all the implemented methods available in the class
+ * 			 mechanism to all the implemented methods available in this class
  * Assumption: This is a java project so considering as a single transaction
  */
 public class UndoManagerImpl implements UndoManager{

@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import undo.Document;
 
 /**
+ * Its dummy implementation for testing
  * Created by Thofiq.Khan on 8/22/2017.
  * Note: Dummy document implementation for unit testing
  * pls don't review this code :):)
